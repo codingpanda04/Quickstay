@@ -13,13 +13,25 @@ const Footer = () => {
                     </p>
                     <div className='flex items-center gap-3 mt-4'>
                         {/* Instagram */}
-                        <img src={assets.instagramIcon} className='w-6'/>
+                        <a href="">
+                            <img src={assets.instagramIcon} className='w-6'/>
+                        </a>
+                        
                         {/* Facebook */}
-                        <img src={assets.facebookIcon} className='w-6'/>
+                        <a href="">
+                            <img src={assets.facebookIcon} className='w-6'/>
+                        </a>
+                        
                         {/* Twitter */}
-                        <img src={assets.twitterIcon} className='w-6'/>
+                        <a href="">
+                            <img src={assets.twitterIcon} className='w-6'/>
+                        </a>
+                        
                         {/* LinkedIn */}
-                        <img src={assets.linkedinIcon} className='w-6'/>
+                        <a href="">
+                            <img src={assets.linkedinIcon} className='w-6'/>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -37,7 +49,7 @@ const Footer = () => {
                 <div>
                     <p className='font-playfair text-lg text-gray-800'>SUPPORT</p>
                     <ul className='mt-3 flex flex-col gap-2 text-sm'>
-                        <li><a href="#">Help Center</a></li>
+                        <li><a href="/support">Help Center</a></li>
                         <li><a href="#">Safety Information</a></li>
                         <li><a href="#">Cancellation Options</a></li>
                         <li><a href="#">Contact Us</a></li>

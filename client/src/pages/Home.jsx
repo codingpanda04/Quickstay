@@ -5,6 +5,7 @@ import ExclusiveOffers from '../components/ExclusiveOffers'
 import Testimonial from '../components/Testimonial'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
+import FAQS from '../components/Freq'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
         <ExclusiveOffers/>
         <Testimonial />
         <Newsletter />
+        <FAQS />
     </div>
   )
 }
