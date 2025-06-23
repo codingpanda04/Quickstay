@@ -9,6 +9,11 @@ import { useClerk, useUser } from '@clerk/clerk-react';
 import MyBookings from './pages/MyBookings';
 import Error404 from './components/Error404';
 import HotelReg from './components/HotelReg';
+import Layout from './pages/hotelOwner/Layout';
+import Dashboard from './pages/hotelOwner/Dashboard';
+import AddRoom from './pages/hotelOwner/AddRoom';
+import ListRoom from './pages/hotelOwner/ListRoom';
+// import AddRoom from './pages/hotelOwner/AddRoom';
 
 const App = () => {
   const user = useUser()
@@ -26,6 +31,12 @@ const App = () => {
           {user && <Route path='/my-bookings' element={<MyBookings/>}/>}
           <Route path='/my-bookings' element={<Error404/>}/>
           <Route path='*' element={<Error404/>} />
+
+          <Route path='/owner' element={<Layout />}>
+            <Route index element={<Dashboard/>} />
+            <Route path='add-room' element={<AddRoom/>} />
+            <Route path='list-room' element={<ListRoom/>} />  
+          </Route>
         </Routes>
       </div>
       <Footer />
