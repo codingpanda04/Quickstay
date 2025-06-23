@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Title from '../../components/Title';
 
 const AddRoom = () => {
+
+    const [images, setImages] = useState({
+        1: null,
+        2: null,
+        3: null,
+        4: null
+    });
+
+    const [inputs, setInputs] = useState({
+        roomType: '',
+        pricePerNight: 0,
+        amenities: {
+            'Free Wifi': false,
+            'Free Breakfast': false,
+            'Room Service': false,
+            'Mountain View': false,
+            'Pool Access': false,
+        }
+    })
+
+
     return (
-        <div className="py-10 flex flex-col justify-between bg-white">
              <form className="md:p-10 p-4 space-y-5 max-w-lg">
+                <Title align="left" font="outfit" title="Add Room" subTitle="Fill in the details carefully and accurate room details, pricing, and amenities, to enhance the user booking experience" />
                 <div>
                     <p className="text-base font-medium">Product Image</p>
                     <div className="flex flex-wrap items-center gap-3 mt-2">
@@ -44,7 +66,6 @@ const AddRoom = () => {
                 </div>
                 <button className="px-8 py-2.5 bg-indigo-500 text-white font-medium rounded cursor-pointer">ADD</button>
             </form>
-        </div>
     );
 };
 
