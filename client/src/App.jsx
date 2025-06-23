@@ -8,6 +8,7 @@ import RoomDetails from './pages/RoomDetails';
 import { useClerk, useUser } from '@clerk/clerk-react';
 import MyBookings from './pages/MyBookings';
 import Error404 from './components/Error404';
+import HotelReg from './components/HotelReg';
 
 const App = () => {
   const user = useUser()
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <div>
       {! isOwnerPath && <Navbar/>}
+      {false && <HotelReg />}
       <div className='min-h-[70vh]'>
         <Routes>
           <Route path='/' element={<Home/>}/>
