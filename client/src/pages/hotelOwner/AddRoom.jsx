@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Title from '../../components/Title';
+import {assets} from '../../assets/assets';
 
 const AddRoom = () => {
 
@@ -24,48 +25,60 @@ const AddRoom = () => {
 
 
     return (
-             <form className="md:p-10 p-4 space-y-5 max-w-lg">
+             <form className="">
                 <Title align="left" font="outfit" title="Add Room" subTitle="Fill in the details carefully and accurate room details, pricing, and amenities, to enhance the user booking experience" />
-                <div>
-                    <p className="text-base font-medium">Product Image</p>
-                    <div className="flex flex-wrap items-center gap-3 mt-2">
-                        {Array(4).fill('').map((_, index) => (
-                            <label key={index} htmlFor={`image${index}`}>
-                                <input accept="image/*" type="file" id={`image${index}`} hidden />
-                                <img className="max-w-24 cursor-pointer" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/e-commerce/uploadArea.png" alt="uploadArea" width={100} height={100} />
+                
+                    <p className="text-gray-800 mt-10">Images</p>
+                    <div className="grid grid-columns-2 sm:flex gap-4 my-2 flex-wrap">
+                        {Object.keys(images).map((key) => (
+                            <label htmlFor={`roomImage${key}`} key={key}>
+                                <img className='max-h-13 cursor-pointer opacity-80' src={images[key] ? URL.createObjectURL(images[key]) : assets.uploadArea} />
+                                <input accept='image/*' type="file" id={`roomImage${key}`} hidden onChange={e=> setImages({...images, [key] : e.target.files[0]})}/>
                             </label>
                         ))}
                     </div>
-                </div>
-                <div className="flex flex-col gap-1 max-w-md">
-                    <label className="text-base font-medium" htmlFor="product-name">Product Name</label>
-                    <input id="product-name" type="text" placeholder="Type here" className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40" required />
-                </div>
-                <div className="flex flex-col gap-1 max-w-md">
-                    <label className="text-base font-medium" htmlFor="product-description">Product Description</label>
-                    <textarea id="product-description" rows={4} className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 resize-none" placeholder="Type here"></textarea>
-                </div>
-                <div className="w-full flex flex-col gap-1">
-                    <label className="text-base font-medium" htmlFor="category">Category</label>
-                    <select id="category" className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40">
-                        <option value="">Select Category</option>
-                        {[{ name: 'Electronics' }, { name: 'Clothing' }, { name: 'Accessories' }].map((item, index) => (
-                            <option key={index} value={item.name}>{item.name}</option>
+
+                    <div className='w-full flex max-sm:flex-col sm:gap-4 mt-4'>
+                        <div className='flex-1 max-w-48'>
+                            <p className='text-gray-800 mt-4'>Room Type</p>
+                            <select value={inputs.roomType} onChange={e=> setInputs({...inputs, roomType: e.target.value})} className='border opacity-70 border-gray-300 mt-1 rounded p-2 w-full'>
+                                <option value="">Select Room Type</option>
+                                <option value="Single Bed">Single Bed</option>
+                                <option value="Double Bed">Double Bed</option>
+                                <option value="Luxury Room">Luxury Room</option>
+                                <option value="Family Suite">Family Suite</option>
+                            </select>
+                        </div>
+
+                        <div className='flex-1 max-w-48'>
+                            <p className='text-gray-800 mt-4'>
+                                Price <span className='text-xs'>/night</span>
+                            </p>
+                            <input className='border border-gray-300 p-2 rounded' type="number" placeholder='0' value={inputs.pricePerNight} onChange={e=> setInputs({...inputs, pricePerNight: e.target.value})}/>
+                        </div>
+                    </div>
+
+                    <p className='text-gray-800 mt-4'>Amenities</p>
+                    <div className='flex flex-col flex-wrap mt-1 text-gray-400 max-w-sm'>
+                        {Object.keys(inputs.amenities).map((amenity, index) => (
+                            <div key={index} className='flex items-center gap-2 my-2 cursor-pointer'>
+                                <input className='cursor-pointer' type="checkbox" id={`amenities${index+1}`} checked={inputs.amenities[amenity]} onChange={()=> setInputs({
+                                    ...inputs,
+                                    amenities: {
+                                        ...inputs.amenities,
+                                        [amenity]: !inputs.amenities[amenity]
+                                    }
+                                })} />
+                                <label htmlFor={`amenities${index+1}`} className='text-gray-800'>{amenity}</label>
+                            </div>
                         ))}
-                    </select>
-                </div>
-                <div className="flex items-center gap-5 flex-wrap">
-                    <div className="flex-1 flex flex-col gap-1 w-32">
-                        <label className="text-base font-medium" htmlFor="product-price">Product Price</label>
-                        <input id="product-price" type="number" placeholder="0" className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40" required />
                     </div>
-                    <div className="flex-1 flex flex-col gap-1 w-32">
-                        <label className="text-base font-medium" htmlFor="offer-price">Offer Price</label>
-                        <input id="offer-price" type="number" placeholder="0" className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40" required />
-                    </div>
-                </div>
-                <button className="px-8 py-2.5 bg-indigo-500 text-white font-medium rounded cursor-pointer">ADD</button>
-            </form>
+
+                    <button className='bg-primary text-white px-8 py-2 rounded mt-8 cursor-pointer'>
+                        Add Room
+                    </button>
+                
+               </form>
     );
 };
 
