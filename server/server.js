@@ -1,3 +1,4 @@
+// server.js
 import express from 'express';
 import cors from 'cors';
 import "dotenv/config";
@@ -10,20 +11,24 @@ connectDb()
 const app = express();
 app.use(cors());
 
-//middleware
-app.use(clerkMiddleware());
+// 🛑 Middleware to save raw body for Clerk webhook verification
+app.use('/api/clerk', express.raw({ type: 'application/json' }));
+
+// ✅ After raw middleware, now apply json parsing for other routes
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+// Clerk middleware
+app.use(clerkMiddleware());
 
-//APIS
-//CLERK WEBHOOK API
-app.use('/api/clerk', clerkWebhooks)
+// CLERK WEBHOOK API
+app.use('/api/clerk', clerkWebhooks);
 
+// Health check
 app.get('/', (req, res) => {
     res.send('QuickStay server is live!');
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
