@@ -4,15 +4,14 @@ import cors from 'cors';
 import "dotenv/config";
 import connectDb from './configs/db.js';
 import { clerkMiddleware } from '@clerk/express';
-import clerkWebhooks from './controllers/clerkWebhooks.js';
+import { functions, inngest } from './inngest/index.js';
+import {serve} from 'inngest/express'
 
-connectDb()
+await connectDb();
 
 const app = express();
 app.use(cors());
 
-// 🛑 Middleware to save raw body for Clerk webhook verification
-app.use('/api/clerk', express.raw({ type: 'application/json' }));
 
 // ✅ After raw middleware, now apply json parsing for other routes
 app.use(express.json());
@@ -21,7 +20,7 @@ app.use(express.json());
 app.use(clerkMiddleware());
 
 // CLERK WEBHOOK API
-app.use('/api/clerk', clerkWebhooks);
+app.use('/api/clerk', serve({client: inngest, functions}));
 
 // Health check
 app.get('/', (req, res) => {
