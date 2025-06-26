@@ -6,8 +6,13 @@ import connectDb from './configs/db.js';
 import { clerkMiddleware } from '@clerk/express';
 import { functions, inngest } from './inngest/index.js';
 import {serve} from 'inngest/express'
+import userRouter from './routes/userRoutes.js';
+import hotelRouter from './routes/hotelRoutes.js';
+import connectCloudinary from './configs/cloudinary.js';
+import roomRouter from './routes/roomRoutes.js';
 
 await connectDb();
+await connectCloudinary();
 
 const app = express();
 app.use(cors());
@@ -26,6 +31,10 @@ app.use('/api/clerk', serve({client: inngest, functions}));
 app.get('/', (req, res) => {
     res.send('QuickStay server is live!');
 });
+app.use('/api/user', userRouter);
+app.use('/api/hotels', hotelRouter);
+app.use('/api/rooms', roomRouter);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
