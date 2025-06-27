@@ -54,6 +54,7 @@ export const AppProvider = ({ children }) => {
         axios,
         searchedCities,
         setSearchedCities,
+        fetchUser
     }
 
     return (

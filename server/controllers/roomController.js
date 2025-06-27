@@ -11,7 +11,6 @@ export const createRoom = async (req, res)=>{
         if(!hotel){
             return res.json({success: false, message: "No hotel found"});
         }
-
         //upload images to cloudinary
         const uploadImages = req.files.map(async (file) => {
             const response = await cloudinary.uploader.upload(file.path);
