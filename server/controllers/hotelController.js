@@ -1,11 +1,11 @@
 import User from "../models/User.js";
 import Hotel from "../models/Hotel.js";
-import { err } from "inngest/types";
+
 
 export const registerHotel = async(req, res)=>{
     try {
         const {name, address, contact, city} = req.body;
-        const owner = user._id;
+        const owner = req.user._id;
 
         //check if user is already registered
         const hotel = await Hotel.findOne({owner});
