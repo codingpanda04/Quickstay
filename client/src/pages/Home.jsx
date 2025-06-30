@@ -6,11 +6,13 @@ import Testimonial from '../components/Testimonial'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import FAQS from '../components/Freq'
+import RecommendedHotels from '../components/RecommendedHotels'
 
 const Home = () => {
   return (
     <div>
         <Hero/>
+        <RecommendedHotels/>
         <FeaturedDestination/>
         <ExclusiveOffers/>
         <Testimonial />
