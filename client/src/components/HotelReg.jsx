@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 const HotelReg = () => {
 
-    const {setShowHotelReg, axios, getToken, setIsOwner, fetchUser} = useAppContext();
+    const {setShowHotelReg, axios, getToken, setIsOwner} = useAppContext();
 
     const [name, setName] = useState('');
     const [contact, setContact] = useState('');
@@ -21,9 +21,8 @@ const HotelReg = () => {
 
             if(data.success){
                 toast.success(data.message);
-                setShowHotelReg(false);
-                fetchUser();
                 setIsOwner(true);
+                setShowHotelReg(false);
             } else{
                 toast.error(data.message);
             }

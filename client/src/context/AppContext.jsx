@@ -18,6 +18,8 @@ export const AppProvider = ({ children }) => {
     const [isOwner, setIsOwner] = useState(false);
     const [showHotelReg, setShowHotelReg] = useState(false);
     const [searchedCities, setSearchedCities] = useState([]);
+    
+
 
     const fetchUser = async ()=>{
         try {
@@ -54,7 +56,6 @@ export const AppProvider = ({ children }) => {
         axios,
         searchedCities,
         setSearchedCities,
-        fetchUser
     }
 
     return (
