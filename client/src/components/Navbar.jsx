@@ -25,7 +25,7 @@ const Navbar = () => {
     const {openSignIn} = useClerk();
     const location = useLocation();
 
-    const {user, navigate, setShowHotelReg, isOwner} = useAppContext();
+    const {user, navigate, setShowHotelReg, isOwner, loadingUser} = useAppContext();
 
 
     useEffect(() => {
@@ -60,7 +60,7 @@ const Navbar = () => {
                             <div className={`${isScrolled ? "bg-gray-700" : "bg-white"} h-0.5 w-0 group-hover:w-full transition-all duration-300`} />
                         </a>
                     ))}
-                    {user && (<button className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`} onClick={()=> isOwner ? navigate('/owner'): setShowHotelReg(true)}>
+                    {user && !loadingUser && (<button className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`} onClick={()=> isOwner ? navigate('/owner'): setShowHotelReg(true)}>
                         {isOwner ? 'Dashboard' : 'Register Hotel'}
                     </button>)}
                 </div>
@@ -102,7 +102,7 @@ const Navbar = () => {
                         </a>
                     ))}
 
-                    {user && <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all" onClick={()=> isOwner ? navigate('/owner'): setShowHotelReg(true)}>
+                    {user && !loadingUser && <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all" onClick={()=> isOwner ? navigate('/owner'): setShowHotelReg(true)}>
                         {isOwner ? 'Dashboard' : 'Register Hotel'}
                     </button>}
 

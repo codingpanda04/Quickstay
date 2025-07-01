@@ -16,6 +16,7 @@ export const AppProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const [isOwner, setIsOwner] = useState(false);
+    const [loadingUser, setLoadingUser] = useState(true); // NEW
     const [showHotelReg, setShowHotelReg] = useState(false);
     const [searchedCities, setSearchedCities] = useState([]);
     const [rooms, setRooms] = useState([]);
@@ -36,6 +37,7 @@ export const AppProvider = ({ children }) => {
 
     const fetchUser = async ()=>{
         try {
+            setLoadingUser(true); // Set loading to true
             const data = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}`}});
 
             if(data.success) {
@@ -48,12 +50,16 @@ export const AppProvider = ({ children }) => {
             }
         } catch (error) {
             toast.error(error.message);
-        }
+        } finally {
+        setLoadingUser(false); // finish
+    }
     }
 
     useEffect(() => {
         if(user) {
             fetchUser();
+        } else {
+            setLoadingUser(false); // user is definitely null
         }
     }, [user])
 
@@ -75,6 +81,7 @@ export const AppProvider = ({ children }) => {
         setSearchedCities,
         rooms,
         setRooms,
+        loadingUser,
     }
 
     return (

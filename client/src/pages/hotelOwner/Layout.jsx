@@ -6,14 +6,13 @@ import { useAppContext } from '../../context/AppContext';
 
 const Layout = () => {
 
-    /* const { isOwner, navigate } = useAppContext();
+    const { isOwner, navigate, loadingUser } = useAppContext();
 
     useEffect(() => {
-        if (!isOwner) {
+        if (!loadingUser && !isOwner) {
         navigate("/");
         }
-    }
-    ,[isOwner]); */
+    }, [isOwner, loadingUser]);
 
 
     return (
