@@ -17,10 +17,10 @@ await connectDb();
 await connectCloudinary();
 
 const app = express();
-app.use(cors(/*{
+app.use(cors({
   origin: "https://quickstay-ashy.vercel.app", // Replace with your frontend URL
   credentials: true
-}*/));
+}));
 
 
 //Stripe webhook

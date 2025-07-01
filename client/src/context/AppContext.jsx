@@ -35,26 +35,29 @@ export const AppProvider = ({ children }) => {
         }
     }
 
-    const fetchUser = async ()=>{
+    const fetchUser = async () => {
         try {
-            setLoadingUser(true); // Set loading to true
-            const data = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}`}});
-            console.log("fetchUser returned: ", data);
+            setLoadingUser(true);
+            const response = await axios.get('/api/user', {
+            headers: { Authorization: `Bearer ${await getToken()}` }
+            });
 
-            if(data.success) {
-                setIsOwner(data.role === "hotelOwner");
-                setSearchedCities(data.recentSearchedCities);
-            } else{
-                setTimeout(() => {
-                    fetchUser();
-                }, 5000);
+            console.log("🟢 fetchUser response: ", response);
+            console.log("🟢 fetchUser data: ", response.data);
+
+            if (response.data.success) {
+            setIsOwner(response.data.role === "hotelOwner");
+            setSearchedCities(response.data.recentSearchedCities);
+            } else {
+            setTimeout(fetchUser, 5000);
             }
         } catch (error) {
             toast.error(error.message);
         } finally {
-        setLoadingUser(false); // finish
+            setLoadingUser(false);
+        }
     }
-    }
+
 
     useEffect(() => {
         if(user) {
@@ -83,6 +86,7 @@ export const AppProvider = ({ children }) => {
         rooms,
         setRooms,
         loadingUser,
+        fetchUser,
     }
 
     return (

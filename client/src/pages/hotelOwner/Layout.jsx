@@ -6,7 +6,11 @@ import { useAppContext } from '../../context/AppContext';
 
 const Layout = () => {
 
-    const { isOwner, navigate, loadingUser } = useAppContext();
+    const { isOwner, navigate, loadingUser, fetchUser } = useAppContext();
+
+    useEffect(() => {
+        fetchUser();   // ✅ actually ask the server
+    }, []);
 
     useEffect(() => {
         if (!loadingUser && !isOwner) {
