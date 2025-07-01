@@ -49,7 +49,7 @@ const Footer = () => {
                 <div>
                     <p className='font-playfair text-lg text-gray-800'>SUPPORT</p>
                     <ul className='mt-3 flex flex-col gap-2 text-sm'>
-                        <li><a href="/support">Help Center</a></li>
+                        <li><a href="https://quickstay.tawk.help">Help Center</a></li>
                         <li><a href="#">Safety Information</a></li>
                         <li><a href="#">Cancellation Options</a></li>
                         <li><a href="#">Contact Us</a></li>

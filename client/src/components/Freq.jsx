@@ -25,16 +25,16 @@ function Accordion({ question, answer }) {
 function FAQs() {
   const faqs = [
     {
-      question: "This is question 1?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      question: "What types of accommodations do you offer?",
+      answer: "We offer a wide range of accommodations, including boutique hotels, luxury resorts, and exclusive villas around the world.",
     },
     {
-      question: "This is question 2?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      question: "How can I check availability for my desired dates?",
+      answer: "You can check availability by entering your destination, check-in and check-out dates, and the number of guests on our website.",
     },
     {
-      question: "This is question 3?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      question: "Do you have any special offers available?",
+      answer: "Yes, we have various limited-time offers, including discounts on packages like the Summer Escape Package and Romantic Getaway.",
     },
     // Additional FAQs can be added here
   ];
