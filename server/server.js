@@ -17,7 +17,12 @@ await connectDb();
 await connectCloudinary();
 
 const app = express();
-app.use(cors());
+import cors from "cors";
+app.use(cors({
+  origin: "https://quickstay.vercel.app",
+  credentials: true
+}));
+
 
 //Stripe webhook
 app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhook);
