@@ -19,7 +19,7 @@ await connectCloudinary();
 const app = express();
 import cors from "cors";
 app.use(cors({
-  origin: "https://quickstay.vercel.app",
+  origin: "https://quickstay-ashy.vercel.app", // Replace with your frontend URL
   credentials: true
 }));
 
