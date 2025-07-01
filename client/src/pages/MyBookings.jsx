@@ -22,7 +22,7 @@ const MyBookings = () => {
     }
 
     //function to initialize stripe instance
-    const handlePayment = async (bookindId) => {
+    const handlePayment = async (bookingId) => {
         try {
             const {data} = await axios.post('/api/bookings/stripe-payment', {bookingId}, {headers: {Authorization: `Bearer ${await getToken()}`}});
             if(data.success) {

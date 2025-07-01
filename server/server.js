@@ -11,6 +11,7 @@ import hotelRouter from './routes/hotelRoutes.js';
 import connectCloudinary from './configs/cloudinary.js';
 import roomRouter from './routes/roomRoutes.js';
 import bookingRouter from './routes/bookingRoutes.js';
+import { stripeWebhook } from './controllers/stripeWebhooks.js';
 
 await connectDb();
 await connectCloudinary();
@@ -27,6 +28,9 @@ app.use(clerkMiddleware());
 
 // CLERK WEBHOOK API
 app.use('/api/clerk', serve({client: inngest, functions}));
+
+//Stripe webhook
+app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhook);
 
 // Health check
 app.get('/', (req, res) => {
