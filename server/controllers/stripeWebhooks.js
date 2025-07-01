@@ -23,7 +23,7 @@ export const stripeWebhook = async (req, res) => {
             payment_intent: paymentIntentId,
         })
 
-        const bookindId = session.data[0].metadata;
+        const bookingId = session.data[0].metadata;
 
         //Update payment status in the database
         await Booking.findByIdAndUpdate(bookingId, {isPaid: true, paymentMethod: 'Stripe'});
