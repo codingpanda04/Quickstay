@@ -26,7 +26,6 @@ const Navbar = () => {
     const location = useLocation();
 
     const {user, navigate, setShowHotelReg, isOwner, loadingUser} = useAppContext();
-    console.log("🟢 Navbar sees isOwner as:", isOwner, "and loadingUser:", loadingUser);
 
 
     useEffect(() => {

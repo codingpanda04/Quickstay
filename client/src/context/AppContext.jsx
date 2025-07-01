@@ -42,9 +42,6 @@ export const AppProvider = ({ children }) => {
             headers: { Authorization: `Bearer ${await getToken()}` }
             });
 
-            console.log("🟢 fetchUser response: ", response);
-            console.log("🟢 fetchUser data: ", response.data);
-
             if (response.data.success) {
             setIsOwner(response.data.role === "hotelOwner");
             setSearchedCities(response.data.recentSearchedCities);
