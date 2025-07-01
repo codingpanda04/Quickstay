@@ -39,6 +39,7 @@ export const AppProvider = ({ children }) => {
         try {
             setLoadingUser(true); // Set loading to true
             const data = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}`}});
+            console.log("fetchUser returned: ", data);
 
             if(data.success) {
                 setIsOwner(data.role === "hotelOwner");
