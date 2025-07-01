@@ -19,6 +19,9 @@ await connectCloudinary();
 const app = express();
 app.use(cors());
 
+//Stripe webhook
+app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhook);
+
 
 // ✅ After raw middleware, now apply json parsing for other routes
 app.use(express.json());
@@ -29,8 +32,7 @@ app.use(clerkMiddleware());
 // CLERK WEBHOOK API
 app.use('/api/clerk', serve({client: inngest, functions}));
 
-//Stripe webhook
-app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhook);
+
 
 // Health check
 app.get('/', (req, res) => {
